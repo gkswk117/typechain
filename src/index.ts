@@ -55,3 +55,32 @@ const f = d+e
 console.log(f)
 d.push(e)
 console.log(d)
+
+//#2.4 Types of TS part Three
+//unknown
+let mola : unknown = "unknown type test"
+console.log(typeof(mola))
+if(typeof(mola)==='number'){
+    console.log(mola+1)
+}
+if(typeof(mola)==='string'){
+    console.log(mola.toUpperCase())
+}
+
+//void
+function hello(a:number):void{
+    console.log(a+1)
+    // return a+1
+}
+//number를 인수로 받고, 리턴은 하지 않는다는 뜻.
+
+//never
+function hi(name:string|number){
+    if(typeof name ==="string"){
+        name //string
+    }else if(typeof name ==="number"){
+        name //number
+    }else{
+        name //never
+    }
+}
