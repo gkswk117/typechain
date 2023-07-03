@@ -1,29 +1,22 @@
-//#3.2 Polymorphism
-//- Generic => type variable
+//#4.0 Classes
 /*
-polymorphism
-인자들과 반환값에 대하여 형태(타입)에 따라 그에 상응하는 형태(타입)를 가질 수 있다.
-
-any와의 차이점은 해당 타입에 대한 정보를 잃지 않는다.
-any는 any로서 밖에 알 수 없지만 generics는 타입 정보를 알 수 있다.
+private, public: private은 클래스 외부에서 사용할 수 없다. 그게 자식 클래스일지라도.
+protected: 클래스 내부 및 자식 클래스 내부에서 사용가능.
+abstract class: 상속 기능만 있다. 직접 인스턴스 생성 불가.
+abstract method: 부모 클래스에서는 call signature만 작성. 자식 클래스는 무조건 그 형식으로 메소드 정의를 해야됨.
 */
-/*
-https://www.typescriptlang.org/docs/handbook/2/generics.html
-*/
-type SuperPrint = {
-    <T>(arr:T[]):T
+abstract class Teacher{
+    constructor(private firstName:string, private lastName:string, protected nickname:string){}
+    pub = ()=>{console.log(this.firstName+this.lastName)}
+    abstract getNickName():void
 }
-const superPrint:SuperPrint=(arr)=>arr[0]
-console.log(superPrint([1,2,3,4]))
-console.log(superPrint([true,false,true]))
-console.log(superPrint(["a","b","c"]))
-console.log(superPrint([1,2,true,false,"hello"]))
-
-type MinerPrint ={
-    (arr:any):any
+class ExtendedTeacher extends Teacher{
+    getNickName(): void {
+        console.log(this.nickname)
+    }
 }
-const minerPrint:MinerPrint=(arr)=>arr[0]
-console.log(minerPrint([1,2,3,4]))
-console.log(minerPrint([true,false,true]))
-console.log(minerPrint(["a","b","c"]))
-console.log(minerPrint([1,2,true,false,"hello"]))
+// const bhw = new Teacher("hanwoong","bae","gkswk")
+const bhw = new ExtendedTeacher("hanwoong","bae","gkswk")
+// console.log(bhw.nickname)
+bhw.pub()
+bhw.getNickName()
