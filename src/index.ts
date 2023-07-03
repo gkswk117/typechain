@@ -1,22 +1,36 @@
-//#4.0 Classes
-/*
-private, public: private은 클래스 외부에서 사용할 수 없다. 그게 자식 클래스일지라도.
-protected: 클래스 내부 및 자식 클래스 내부에서 사용가능.
-abstract class: 상속 기능만 있다. 직접 인스턴스 생성 불가.
-abstract method: 부모 클래스에서는 call signature만 작성. 자식 클래스는 무조건 그 형식으로 메소드 정의를 해야됨.
-*/
-abstract class Teacher{
-    constructor(private firstName:string, private lastName:string, protected nickname:string){}
-    pub = ()=>{console.log(this.firstName+this.lastName)}
-    abstract getNickName():void
+//#3.1 Recap
+//property key의 타입을 정할 수 있다.
+//property가 생성자 함수에 의해 바로 초기화 되지 않고, 추후에 값이 입력될 수 있다.
+//argument로 클래스를 넣을 수는 없지만, parameter의 타입으로 클래스를 넣을 수도 있다. 이러면 argument로 해당 클래스의 인스턴스만을 받겠다는 뜻.
+//#3.2 부터는 parameter로 클래스 외에 넣을 수 있는 또 다른 타입을 알아볼 예정.
+type Words ={
+    [k:string]:string
 }
-class ExtendedTeacher extends Teacher{
-    getNickName(): void {
-        console.log(this.nickname)
+class Dict {
+    private words:Words
+    constructor(){
+        this.words = {}
     }
+    add(word:Word){
+        if(this.words[word.term]===undefined){
+            this.words[word.term]=word.def
+        }
+    }
+    getWord(term:string){
+        return this.words[term]
+    }
+    /*
+    코드 챌린지
+    단어를 삭제하고, 단어를 업데이트하는 메소드를 만들기
+    */
 }
-// const bhw = new Teacher("hanwoong","bae","gkswk")
-const bhw = new ExtendedTeacher("hanwoong","bae","gkswk")
-// console.log(bhw.nickname)
-bhw.pub()
-bhw.getNickName()
+class Word {
+    constructor(
+        public term:string,
+        public def:string
+    ){}
+}
+const kimchi= new Word("김치","배추를 소금에 절여서 만든 한국의 음식. 매콤하고 시큼한게 특징이다.")
+const dict = new Dict()
+dict.add(kimchi)
+console.log(dict.getWord("김치"))
