@@ -17,7 +17,7 @@ class Gentleman extends AbstractGentleman{
         return `${this.firstName} ${this.lastName}`
     }
     sayHi(name:string){
-        console.log(`${name}, sayHi ${this.fullName()}. a is ${this.a}`)
+        console.log(`${name}, sayHi ${this.fullName()}.`)
     }
 }
 //Interface
@@ -68,7 +68,6 @@ const testfunc:testtype=(a)=>{
         sayHi:(a)=>{}
     }
 }
-
 
 // private 사용 불가능
 // class Gentleman3 implements InterfaceGentleman{
