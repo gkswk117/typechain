@@ -14,7 +14,8 @@ type SuperPrint = {
     <T>(arr:T[]):T
 }
 const superPrint:SuperPrint=(arr)=>arr[0]
-console.log(superPrint([1,2,3,4]))
+console.log(superPrint<number>([1,2,3,4]))
+//아래와 같이 생략 가능하다. Typescript가 알아서 추론(infer)할 것이다.
 console.log(superPrint([true,false,true]))
 console.log(superPrint(["a","b","c"]))
 console.log(superPrint([1,2,true,false,"hello"]))
